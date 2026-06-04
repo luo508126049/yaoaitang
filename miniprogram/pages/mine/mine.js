@@ -1,4 +1,5 @@
 const { isLoggedIn, logout, navigateToLogin } = require('../../utils/auth')
+const { getMine } = require('../../utils/api')
 
 Page({
   data: {
@@ -25,6 +26,29 @@ Page({
   onShow() {
     if (!isLoggedIn()) {
       navigateToLogin('/pages/mine/mine')
+      return
+    }
+    this.loadMine()
+  },
+
+  async loadMine() {
+    try {
+      const data = await getMine()
+      this.setData({
+        stats: (data.stats || []).map((item) => ({
+          label: item.title,
+          value: item.metadata || '0'
+        })),
+        cells: (data.services || []).map((item) => ({
+          key: item.linkValue || item.title,
+          label: item.title,
+          subtitle: item.subtitle,
+          linkType: item.linkType,
+          linkValue: item.linkValue
+        }))
+      })
+    } catch (error) {
+      // Keep local fallback content.
     }
   },
 
@@ -36,6 +60,10 @@ Page({
     }
     if (key === 'service') {
       wx.navigateTo({ url: '/pages/experience/experience' })
+      return
+    }
+    if (event.currentTarget.dataset.linkType === 'page' && event.currentTarget.dataset.linkValue) {
+      wx.navigateTo({ url: event.currentTarget.dataset.linkValue })
       return
     }
     wx.navigateTo({

@@ -1,3 +1,5 @@
+const { getVideos } = require('../../utils/api')
+
 const videos = [
   {
     title: '古法制艾工艺',
@@ -19,8 +21,32 @@ const videos = [
   }
 ]
 
+function normalizeVideo(item) {
+  return {
+    title: item.title,
+    length: item.badge || item.metadata || '',
+    summary: item.subtitle,
+    poster: item.imageUrl || '/images/banner-heritage.png'
+  }
+}
+
 Page({
   data: { videos },
+
+  onLoad() {
+    this.loadVideos()
+  },
+
+  async loadVideos() {
+    try {
+      const serverVideos = (await getVideos()).map(normalizeVideo)
+      if (serverVideos.length) {
+        this.setData({ videos: serverVideos })
+      }
+    } catch (error) {
+      this.setData({ videos })
+    }
+  },
 
   onBack() {
     wx.navigateBack({ fail: () => wx.redirectTo({ url: '/pages/index/index' }) })

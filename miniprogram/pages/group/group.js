@@ -1,4 +1,4 @@
-const { getProducts } = require('../../utils/api')
+const { getGroupActivities, getProducts } = require('../../utils/api')
 const { isLoggedIn, navigateToLogin } = require('../../utils/auth')
 
 function formatPrice(value) {
@@ -23,13 +23,26 @@ Page({
 
   async loadProducts() {
     this.setData({ loading: true })
-    const products = (await getProducts()).map((item, index) => ({
-      ...item,
-      imageUrl: item.imageUrl || (index % 2 === 0 ? '/images/product-gift-photo.png' : '/images/product-single-photo.png'),
-      groupPrice: formatPrice((Number(item.price) || 0) * 0.86),
-      displayPrice: formatPrice(item.price),
-      memberCount: index % 2 === 0 ? 3 : 2
-    }))
+    let products = []
+    try {
+      products = (await getGroupActivities()).map((item) => ({
+        id: item.linkValue,
+        name: item.title,
+        subtitle: item.subtitle,
+        imageUrl: item.imageUrl || '/images/product-gift-photo.png',
+        groupPrice: formatPrice(item.price),
+        displayPrice: formatPrice(item.marketPrice),
+        memberCount: Number(item.metadata) || 2
+      }))
+    } catch (error) {
+      products = (await getProducts()).map((item, index) => ({
+        ...item,
+        imageUrl: item.imageUrl || (index % 2 === 0 ? '/images/product-gift-photo.png' : '/images/product-single-photo.png'),
+        groupPrice: formatPrice((Number(item.price) || 0) * 0.86),
+        displayPrice: formatPrice(item.price),
+        memberCount: index % 2 === 0 ? 3 : 2
+      }))
+    }
     this.setData({ loading: false, products })
   },
 

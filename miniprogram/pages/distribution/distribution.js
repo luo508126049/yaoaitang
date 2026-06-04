@@ -1,4 +1,5 @@
 const { isLoggedIn, navigateToLogin } = require('../../utils/auth')
+const { getDistribution } = require('../../utils/api')
 
 Page({
   data: {
@@ -21,6 +22,28 @@ Page({
   onLoad() {
     if (!isLoggedIn()) {
       navigateToLogin('/pages/distribution/distribution')
+      return
+    }
+    this.loadDistribution()
+  },
+
+  async loadDistribution() {
+    try {
+      const data = await getDistribution()
+      this.setData({
+        metrics: (data.metrics || []).map((item) => ({
+          label: item.title,
+          value: item.metadata || item.subtitle || '0'
+        })),
+        tasks: (data.tasks || []).map((item) => item.title),
+        partners: (data.leads || []).map((item) => ({
+          name: item.title,
+          tag: item.badge,
+          amount: item.subtitle
+        }))
+      })
+    } catch (error) {
+      // Keep local fallback content.
     }
   },
 

@@ -17,7 +17,7 @@
 
   <view class="section-title">常用服务</view>
   <view class="cell-list">
-    <button wx:for="{{cells}}" wx:key="key" class="cell" data-key="{{item.key}}" data-label="{{item.label}}" bindtap="onCellTap">
+    <button wx:for="{{cells}}" wx:key="key" class="cell" data-key="{{item.key}}" data-label="{{item.label}}" data-link-type="{{item.linkType}}" data-link-value="{{item.linkValue}}" bindtap="onCellTap">
       <view>
         <text class="cell-title">{{item.label}}</text>
         <text class="cell-sub">{{item.subtitle}}</text>

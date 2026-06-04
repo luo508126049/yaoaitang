@@ -1,4 +1,4 @@
-const { getProduct } = require('../../utils/api')
+const { addServerCartItem, getProduct } = require('../../utils/api')
 const { navigateToLogin, isLoggedIn } = require('../../utils/auth')
 const { addToCart } = require('../../utils/cart')
 
@@ -43,12 +43,16 @@ Page({
     wx.navigateTo({ url: '/pages/placeholder/placeholder?title=确认订单&subtitle=订单结算功能将在后续版本接入' })
   },
 
-  onCart() {
+  async onCart() {
     if (!isLoggedIn()) {
       navigateToLogin(`/pages/products/detail?id=${this.data.product.id}`)
       return
     }
-    addToCart(this.data.product, 1)
+    try {
+      await addServerCartItem(this.data.product.id, 1)
+    } catch (error) {
+      addToCart(this.data.product, 1)
+    }
     wx.showToast({ title: '已加入购物车', icon: 'success' })
   }
 })

@@ -21,6 +21,12 @@ $env:Path="$env:JAVA_HOME\bin;$env:Path"
 
 - `8080` 可能已有 IDEA 启动的 Java 后端服务。
 - `3306` 是 MySQL，当前项目使用 `yaoaitang` 数据库。
+- 本地数据库连接信息：
+  - Host：`localhost`
+  - Port：`3306`
+  - Database：`yaoaitang`
+  - Username：`root`
+  - Password：`123456`
 - Admin 优先使用：
   - `http://localhost:5174/`
 - 小程序首页 Java API：

@@ -23,7 +23,7 @@ const fallbackProducts = [
 
 const fallbackHome = {
   brandName: '百年老字号曜艾堂',
-  searchPlaceholder: '搜索艾条/艾灸套餐/非遗产品',
+  searchPlaceholder: '搜索艾条/艾灸套装/非遗产品',
   banners: [
     {
       id: 1,
@@ -37,7 +37,8 @@ const fallbackHome = {
       title: '伊尹艾礼盒',
       subtitle: '节气养生礼赠优选',
       imageUrl: '/images/banner-gift.png',
-      linkType: 'product'
+      linkType: 'product',
+      linkValue: '1'
     }
   ],
   products: fallbackProducts,
@@ -60,11 +61,16 @@ function normalizeProduct(item) {
   return { ...item, imageUrl: normalizeUrl(item.imageUrl) }
 }
 
-function request(path) {
+function normalizeModuleItem(item) {
+  return { ...item, imageUrl: normalizeUrl(item.imageUrl) }
+}
+
+function request(path, options = {}) {
   return new Promise((resolve, reject) => {
     wx.request({
       url: `${app.globalData.apiBase}${path}`,
-      method: 'GET',
+      method: options.method || 'GET',
+      data: options.data,
       success(res) {
         if (res.data && res.data.code === 0) {
           resolve(res.data.data)
@@ -77,6 +83,15 @@ function request(path) {
       }
     })
   })
+}
+
+function getUserKey() {
+  let userKey = wx.getStorageSync('yaoaitang_user_key')
+  if (!userKey) {
+    userKey = `mini-${Date.now()}-${Math.random().toString(16).slice(2)}`
+    wx.setStorageSync('yaoaitang_user_key', userKey)
+  }
+  return userKey
 }
 
 async function getHome() {
@@ -92,11 +107,14 @@ async function getHome() {
   }
 }
 
-async function getProducts(keyword = '') {
+async function getProducts(keyword = '', category = '') {
   const clean = String(keyword || '').trim()
+  const cleanCategory = String(category || '').trim()
   try {
-    const query = clean ? `?keyword=${encodeURIComponent(clean)}` : ''
-    const data = await request(`/api/public/products${query}`)
+    const query = []
+    if (clean) query.push(`keyword=${encodeURIComponent(clean)}`)
+    if (cleanCategory) query.push(`category=${encodeURIComponent(cleanCategory)}`)
+    const data = await request(`/api/public/products${query.length ? `?${query.join('&')}` : ''}`)
     const products = (data || []).map(normalizeProduct)
     if (products.length > 0 || !clean) return products
     return fallbackProducts.filter((item) => `${item.name}${item.subtitle}`.includes(clean))
@@ -115,9 +133,103 @@ async function getProduct(id) {
   }
 }
 
+async function getCategories() {
+  const data = await request('/api/public/categories')
+  return (data || []).map(normalizeModuleItem)
+}
+
+async function getCases(category = '') {
+  const query = category ? `?category=${encodeURIComponent(category)}` : ''
+  const data = await request(`/api/public/cases${query}`)
+  return (data || []).map(normalizeModuleItem)
+}
+
+async function getVideos() {
+  const data = await request('/api/public/videos')
+  return (data || []).map(normalizeModuleItem)
+}
+
+async function getExperience() {
+  const data = await request('/api/public/experience')
+  return {
+    coupons: (data.coupons || []).map(normalizeModuleItem),
+    steps: (data.steps || []).map(normalizeModuleItem)
+  }
+}
+
+async function getDistribution() {
+  return request('/api/public/distribution')
+}
+
+async function getMine() {
+  return request('/api/public/mine')
+}
+
+async function getGroupActivities() {
+  const data = await request('/api/public/group-activities')
+  return (data || []).map(normalizeModuleItem)
+}
+
+async function getMarketProducts(keyword = '', category = '') {
+  const query = []
+  if (keyword) query.push(`keyword=${encodeURIComponent(keyword)}`)
+  if (category) query.push(`category=${encodeURIComponent(category)}`)
+  const data = await request(`/api/public/market${query.length ? `?${query.join('&')}` : ''}`)
+  return (data || []).map(normalizeProduct)
+}
+
+async function getServerCart() {
+  return request(`/api/public/cart?userKey=${encodeURIComponent(getUserKey())}`)
+}
+
+async function addServerCartItem(productId, quantity = 1) {
+  return request('/api/public/cart/items', {
+    method: 'POST',
+    data: { userKey: getUserKey(), productId, quantity }
+  })
+}
+
+async function updateServerCartItem(id, patch) {
+  return request(`/api/public/cart/items/${id}`, {
+    method: 'PUT',
+    data: { userKey: getUserKey(), ...patch }
+  })
+}
+
+async function removeServerCartItem(id) {
+  return request(`/api/public/cart/items/${id}`, { method: 'DELETE' })
+}
+
+async function createOrder(cartItemIds = []) {
+  return request('/api/public/orders', {
+    method: 'POST',
+    data: {
+      userKey: getUserKey(),
+      customerName: '小程序会员',
+      customerPhone: '',
+      remark: '小程序购物车下单',
+      cartItemIds
+    }
+  })
+}
+
 module.exports = {
+  addServerCartItem,
+  createOrder,
+  getCategories,
+  getCases,
+  getDistribution,
+  getExperience,
+  getGroupActivities,
+  getHome,
+  getMarketProducts,
+  getMine,
   getProduct,
   getProducts,
-  getHome,
-  normalizeUrl
+  getServerCart,
+  getUserKey,
+  getVideos,
+  normalizeUrl,
+  removeServerCartItem,
+  updateServerCartItem
 }

@@ -1,4 +1,5 @@
 const { isLoggedIn, navigateToLogin } = require('../../utils/auth')
+const { getExperience } = require('../../utils/api')
 
 Page({
   data: {
@@ -7,6 +8,26 @@ Page({
       { title: '节气养生调理券', desc: '适合初次到店用户，含基础问询与体验', value: '¥39' }
     ],
     steps: ['领取体验券', '预约到店时间', '核销体验', '选择适合套盒']
+  },
+
+  onLoad() {
+    this.loadExperience()
+  },
+
+  async loadExperience() {
+    try {
+      const data = await getExperience()
+      this.setData({
+        coupons: (data.coupons || []).map((item) => ({
+          title: item.title,
+          desc: item.subtitle,
+          value: item.price ? `¥${Number(item.price).toFixed(0)}` : item.badge || '可领取'
+        })),
+        steps: (data.steps || []).map((item) => item.title)
+      })
+    } catch (error) {
+      // Keep local fallback content.
+    }
   },
 
   onBack() {

@@ -1,4 +1,4 @@
-const { getProducts } = require('../../utils/api')
+const { getMarketProducts } = require('../../utils/api')
 
 function formatPrice(value) {
   const numeric = Number(value)
@@ -24,7 +24,7 @@ Page({
 
   async loadProducts() {
     this.setData({ loading: true })
-    const products = (await getProducts()).map((item, index) => ({
+    const products = (await getMarketProducts('', this.data.activeFilter)).map((item, index) => ({
       ...item,
       imageUrl: item.imageUrl || (index % 2 === 0 ? '/images/product-gift-photo.png' : '/images/product-single-photo.png'),
       displayPrice: formatPrice(item.price),
@@ -39,6 +39,7 @@ Page({
 
   onFilterTap(event) {
     this.setData({ activeFilter: event.currentTarget.dataset.value })
+    this.loadProducts()
   },
 
   onProductTap(event) {

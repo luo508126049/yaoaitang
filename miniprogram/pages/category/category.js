@@ -1,8 +1,8 @@
-const { getProducts } = require('../../utils/api')
+const { getCategories, getProducts } = require('../../utils/api')
 const { isLoggedIn, navigateToLogin } = require('../../utils/auth')
 
 const categories = [
-  { key: 'all', label: '全部' },
+  { key: 'all', label: '全部', title: '全部' },
   { key: 'moxa', label: '艾制品', words: ['艾', '古法'] },
   { key: 'set', label: '理疗套盒', words: ['套', '礼盒'] },
   { key: 'gift', label: '非遗礼盒', words: ['礼', '非遗'] },
@@ -49,13 +49,33 @@ Page({
 
   async loadProducts() {
     this.setData({ loading: true })
-    const products = decorateProducts(await getProducts())
-    this.setData({ loading: false, allProducts: products })
+    let nextCategories = categories
+    try {
+      const serverCategories = await getCategories()
+      if (serverCategories.length) {
+        nextCategories = serverCategories.map((item) => ({
+          key: item.category || item.linkValue || String(item.id),
+          label: item.title,
+          title: item.title,
+          imageUrl: item.imageUrl
+        }))
+      }
+    } catch (error) {
+      nextCategories = categories
+    }
+    const active = nextCategories.find((item) => item.key === this.data.activeKey) || nextCategories[0]
+    const products = decorateProducts(await getProducts('', active && active.key !== 'all' ? active.title : ''))
+    this.setData({ loading: false, categories: nextCategories, activeKey: active.key, allProducts: products })
     this.applyFilter()
   },
 
   applyFilter() {
     const category = categories.find((item) => item.key === this.data.activeKey)
+    const serverCategory = this.data.categories.find((item) => item.key === this.data.activeKey)
+    if (serverCategory && !categories.find((item) => item.key === this.data.activeKey)) {
+      this.setData({ products: this.data.allProducts })
+      return
+    }
     if (!category || category.key === 'all') {
       this.setData({ products: this.data.allProducts })
       return
@@ -69,7 +89,7 @@ Page({
 
   onCategoryTap(event) {
     this.setData({ activeKey: event.currentTarget.dataset.key })
-    this.applyFilter()
+    this.loadProducts()
   },
 
   onProductTap(event) {

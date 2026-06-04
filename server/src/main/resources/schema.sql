@@ -89,3 +89,40 @@ CREATE TABLE IF NOT EXISTS home_config (
   config_value TEXT,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS module_item (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  module VARCHAR(80) NOT NULL,
+  title VARCHAR(180) NOT NULL,
+  subtitle VARCHAR(500),
+  category VARCHAR(80),
+  image_url VARCHAR(500),
+  link_type VARCHAR(40),
+  link_value VARCHAR(255),
+  badge VARCHAR(80),
+  price DECIMAL(10,2) DEFAULT 0,
+  market_price DECIMAL(10,2) DEFAULT 0,
+  sort_order INT NOT NULL DEFAULT 0,
+  enabled TINYINT NOT NULL DEFAULT 1,
+  metadata TEXT,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_module_item_module_sort (module, enabled, sort_order),
+  INDEX idx_module_item_category (module, category)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS cart_item (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  user_key VARCHAR(120) NOT NULL,
+  product_id BIGINT NOT NULL,
+  product_name VARCHAR(160) NOT NULL,
+  subtitle VARCHAR(220),
+  image_url VARCHAR(500),
+  price DECIMAL(10,2) NOT NULL DEFAULT 0,
+  quantity INT NOT NULL DEFAULT 1,
+  selected TINYINT NOT NULL DEFAULT 1,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uk_cart_user_product (user_key, product_id),
+  INDEX idx_cart_user (user_key)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

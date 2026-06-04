@@ -1,3 +1,5 @@
+const { getCases } = require('../../utils/api')
+
 const tabs = ['全部', '肩颈调理', '妇科调理', '古法制艾']
 
 const cases = [
@@ -24,6 +26,16 @@ const cases = [
   }
 ]
 
+function normalizeCase(item) {
+  return {
+    title: item.title,
+    category: item.category,
+    days: item.badge || item.metadata || '',
+    summary: item.subtitle,
+    imageUrl: item.imageUrl || '/images/banner-experience.png'
+  }
+}
+
 Page({
   data: {
     tabs,
@@ -32,16 +44,31 @@ Page({
     filteredCases: cases
   },
 
+  onLoad() {
+    this.loadCases()
+  },
+
+  async loadCases() {
+    try {
+      const serverCases = (await getCases()).map(normalizeCase)
+      const nextCases = serverCases.length ? serverCases : cases
+      const filtered = this.data.active === '全部' ? nextCases : nextCases.filter((item) => item.category === this.data.active)
+      const nextTabs = ['全部'].concat(Array.from(new Set(nextCases.map((item) => item.category).filter(Boolean))))
+      this.setData({ cases: nextCases, filteredCases: filtered, tabs: nextTabs })
+    } catch (error) {
+      const filtered = this.data.active === '全部' ? cases : cases.filter((item) => item.category === this.data.active)
+      this.setData({ cases, filteredCases: filtered, tabs })
+    }
+  },
+
   onBack() {
     wx.navigateBack({ fail: () => wx.redirectTo({ url: '/pages/index/index' }) })
   },
 
   onTabTap(event) {
     const active = event.currentTarget.dataset.value
-    this.setData({
-      active,
-      filteredCases: active === '全部' ? cases : cases.filter((item) => item.category === active)
-    })
+    this.setData({ active })
+    this.loadCases()
   },
 
   onCaseTap(event) {
