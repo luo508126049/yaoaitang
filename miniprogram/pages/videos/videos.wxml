@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="topbar">
+    <button class="back" bindtap="onBack">‹</button>
+    <view>
+      <text class="title">视频专区</text>
+      <text class="subtitle">非遗工艺、门店体验和产品讲解</text>
+    </view>
+  </view>
+
+  <view class="video-list">
+    <button wx:for="{{videos}}" wx:key="title" class="video-card" bindtap="onVideoTap">
+      <image src="{{item.poster}}" mode="aspectFill" />
+      <view class="play">▶</view>
+      <view class="video-main">
+        <view class="title-row">
+          <text class="video-title">{{item.title}}</text>
+          <text class="length">{{item.length}}</text>
+        </view>
+        <text class="summary">{{item.summary}}</text>
+      </view>
+    </button>
+  </view>
+</view>

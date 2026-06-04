@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="topbar">
+    <button class="back" bindtap="onBack">‹</button>
+    <view>
+      <text class="title">拼团活动</text>
+      <text class="subtitle">多人同行更划算，开团参团需登录</text>
+    </view>
+  </view>
+
+  <image class="hero" src="/images/card-group.png" mode="aspectFill" />
+
+  <view wx:if="{{loading}}" class="state">加载中...</view>
+  <view wx:else class="group-list">
+    <view wx:for="{{products}}" wx:key="id" class="group-card">
+      <image src="{{item.imageUrl}}" mode="aspectFill" data-id="{{item.id}}" bindtap="onProductTap" />
+      <view class="main">
+        <text class="name">{{item.name}}</text>
+        <text class="desc">{{item.subtitle}}</text>
+        <view class="price-row">
+          <view>
+            <text class="group-price">¥{{item.groupPrice}}</text>
+            <text class="origin">单买 ¥{{item.displayPrice}}</text>
+          </view>
+          <button data-id="{{item.id}}" bindtap="onJoin">{{item.memberCount}}人团</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

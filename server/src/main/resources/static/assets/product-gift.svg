@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="360" viewBox="0 0 420 360">
+  <rect width="420" height="360" rx="28" fill="#fbf8ee"/>
+  <path d="M68 124h284v174H68z" fill="#1f5446" rx="22"/>
+  <path d="M90 96h240v54H90z" fill="#a67c3e" rx="14"/>
+  <path d="M210 96v202M70 160h282" stroke="#f8f5e9" stroke-width="10"/>
+  <circle cx="210" cy="128" r="35" fill="none" stroke="#f8f5e9" stroke-width="8"/>
+  <path d="M74 62c34-25 91-13 103 21 29-22 78-4 82 32" fill="none" stroke="#1f5446" stroke-width="7" stroke-linecap="round"/>
+  <text x="84" y="328" fill="#1f5446" font-size="28" font-weight="700" font-family="sans-serif">伊尹艾非遗礼盒</text>
+</svg>

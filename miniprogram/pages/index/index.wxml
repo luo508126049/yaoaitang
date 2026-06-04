@@ -1,0 +1,123 @@
+<view class="page">
+  <view class="brand-bar">
+    <button class="brand" bindtap="onLogoTap">
+      <image class="brand-mark" src="/images/yaoaitang-mark.png" mode="aspectFill" />
+      <text>{{brandName}}</text>
+    </button>
+  </view>
+
+  <view class="search-wrap">
+    <view class="search-box">
+      <view class="search-icon">
+        <view class="search-circle"></view>
+        <view class="search-handle"></view>
+      </view>
+      <input
+        value="{{searchKeyword}}"
+        placeholder="{{searchPlaceholder}}"
+        placeholder-class="search-placeholder"
+        maxlength="20"
+        confirm-type="search"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <view class="search-leaf">
+        <view class="stem"></view>
+        <view class="leaf leaf-a"></view>
+        <view class="leaf leaf-b"></view>
+        <view class="leaf leaf-c"></view>
+      </view>
+    </view>
+    <text wx:if="{{searchTip}}" class="search-tip">{{searchTip}}</text>
+  </view>
+
+  <swiper
+    class="banner"
+    autoplay
+    circular
+    interval="3000"
+    duration="300"
+    current="{{currentBanner}}"
+    bindchange="onBannerChange"
+  >
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <view class="banner-card" bindtap="onBannerTap" bindlongpress="onBannerLongPress">
+        <image class="banner-image" src="{{item.visualUrl}}" mode="aspectFill" />
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="dots">
+    <view wx:for="{{banners}}" wx:key="id" class="dot {{index === currentBanner ? 'active' : ''}}"></view>
+  </view>
+
+  <view class="quick-grid">
+    <button wx:for="{{quickActions}}" wx:key="key" class="quick-item pressable" data-key="{{item.key}}" bindtap="onActionTap">
+      <image class="quick-icon" src="{{item.iconUrl}}" mode="aspectFit" />
+      <text>{{item.label}}</text>
+    </button>
+  </view>
+
+  <view class="activity-row">
+    <button class="activity-card pressable" data-key="group" data-title="{{homeConfig.activityLeftTitle}}" bindtap="onActivityTap">
+      <image src="/images/card-group.png" mode="aspectFill" />
+    </button>
+    <button class="activity-card green pressable" data-key="market" data-title="{{homeConfig.activityRightTitle}}" bindtap="onActivityTap">
+      <image src="/images/card-market.png" mode="aspectFill" />
+    </button>
+  </view>
+
+  <view class="section-head">
+    <text>{{homeConfig.productSectionTitle}}</text>
+    <button bindtap="onMoreProducts">更多 ></button>
+  </view>
+
+  <view class="product-row">
+    <button wx:for="{{products}}" wx:key="id" class="product-card pressable" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="onProductTap">
+      <image class="product-image" src="{{item.visualUrl}}" mode="aspectFill" />
+      <view class="product-info">
+        <text class="product-name">{{item.displayName}}</text>
+        <text class="product-subtitle">{{item.displaySubtitle}}</text>
+        <view class="price-line">
+          <text class="price">¥{{item.displayPrice}}</text>
+          <view class="cart-button">
+            <view class="cart-body"></view>
+            <view class="cart-wheel left"></view>
+            <view class="cart-wheel right"></view>
+          </view>
+        </view>
+      </view>
+    </button>
+  </view>
+
+  <view class="bottom-space"></view>
+
+  <view class="tabbar">
+    <button wx:for="{{tabs}}" wx:key="key" class="tab-item {{item.active ? 'active' : ''}}" data-key="{{item.key}}" bindtap="onTabTap">
+      <image class="tab-icon" src="{{item.iconUrl}}" mode="aspectFit" />
+      <text>{{item.label}}</text>
+    </button>
+  </view>
+
+  <view wx:if="{{showModal}}" class="modal-mask" bindtap="closeModal">
+    <view class="sheet" catchtap="noop">
+      <view wx:if="{{showBrandModal}}">
+        <text class="sheet-title">品牌非遗资质</text>
+        <view class="certificate-thumb">非遗证书</view>
+        <text class="sheet-text">曜艾堂传承罗氏制艾技艺，围绕古法艾条、艾灸理疗与非遗礼盒提供养生服务。</text>
+      </view>
+      <view wx:if="{{showCertificateModal}}">
+        <text class="sheet-title">商丘市非遗证书</text>
+        <view class="certificate-large">
+          <text>商丘市非遗</text>
+          <text>罗氏制艾技艺</text>
+        </view>
+      </view>
+      <view wx:if="{{showAboutModal}}">
+        <text class="sheet-title">关于我们</text>
+        <text class="sheet-text">非遗传承、门店服务、资质展示与就近门店导航将在正式版接入地图能力。</text>
+      </view>
+      <button class="close-button" bindtap="closeModal">关闭</button>
+    </view>
+  </view>
+</view>

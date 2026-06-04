@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="330" height="250" viewBox="0 0 330 250">
+  <rect x="2" y="2" width="326" height="246" rx="24" fill="#fbf3df" stroke="#e1d7c5" stroke-width="3"/>
+  <path d="M22 182c50-31 96-37 144-14 42 20 88 17 146-20" fill="none" stroke="#d0b477" stroke-width="5" opacity=".4"/>
+  <path d="M252 45c24-17 58-8 64 18 20-2 34 13 30 31" fill="none" stroke="#bf9a58" stroke-width="4" opacity=".55"/>
+  <text x="38" y="70" fill="#8b631b" font-size="46" font-weight="800" font-family="serif">非遗</text>
+  <text x="38" y="122" fill="#8b631b" font-size="46" font-weight="800" font-family="serif">大集</text>
+  <g transform="translate(165 76)">
+    <rect x="22" y="48" width="104" height="76" fill="#ba9661" stroke="#6d542e" stroke-width="4"/>
+    <rect x="35" y="60" width="28" height="64" fill="#eadfc5"/>
+    <rect x="83" y="60" width="28" height="64" fill="#eadfc5"/>
+    <path d="M4 47h142l-18-43H26z" fill="#586d45" stroke="#6d542e" stroke-width="4"/>
+    <circle cx="74" cy="84" r="30" fill="#4c6b4a" stroke="#eadfc5" stroke-width="5"/>
+    <text x="74" y="96" text-anchor="middle" fill="#eadfc5" font-size="38" font-weight="800" font-family="serif">艾</text>
+  </g>
+  <circle cx="55" cy="204" r="28" fill="#fbf8ee" stroke="#a67c3e" stroke-width="2"/>
+  <path d="M43 204h24M58 193l12 11-12 11" fill="none" stroke="#a67c3e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="330" height="220" viewBox="0 0 330 220">
+  <rect width="330" height="220" fill="#fbf8ee"/>
+  <path d="M74 96c38-50 72-54 54 8 43 12 26 67-24 58-31 38-91 3-60-44-33-12-11-54 30-22z" fill="#2e6a56"/>
+  <rect x="156" y="55" width="56" height="122" rx="17" fill="#e7d1a5" stroke="#1f5446" stroke-width="5" transform="rotate(-8 184 116)"/>
+  <rect x="161" y="57" width="46" height="34" rx="14" fill="#1f5446" transform="rotate(-8 184 74)"/>
+  <text x="178" y="128" fill="#1f5446" font-size="22" font-weight="800" font-family="serif" transform="rotate(-8 178 128)">伊尹艾</text>
+  <rect x="205" y="136" width="86" height="24" fill="#8b5e31"/>
+  <rect x="220" y="112" width="82" height="24" fill="#6f4727"/>
+  <rect x="235" y="88" width="76" height="24" fill="#9b6d3d"/>
+</svg>

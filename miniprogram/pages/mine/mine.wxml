@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="profile">
+    <image class="mark" src="/images/yaoaitang-mark.png" mode="aspectFill" />
+    <view class="profile-main">
+      <text class="name">曜艾堂会员</text>
+      <text class="desc">游客快捷登录演示账号</text>
+    </view>
+    <button class="logout" bindtap="onLogout">退出</button>
+  </view>
+
+  <view class="stats">
+    <view wx:for="{{stats}}" wx:key="label" class="stat-item">
+      <text class="stat-value">{{item.value}}</text>
+      <text class="stat-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <view class="section-title">常用服务</view>
+  <view class="cell-list">
+    <button wx:for="{{cells}}" wx:key="key" class="cell" data-key="{{item.key}}" data-label="{{item.label}}" bindtap="onCellTap">
+      <view>
+        <text class="cell-title">{{item.label}}</text>
+        <text class="cell-sub">{{item.subtitle}}</text>
+      </view>
+      <text class="arrow">›</text>
+    </button>
+  </view>
+
+  <view class="tabbar">
+    <button wx:for="{{tabs}}" wx:key="key" class="tab-item {{item.active ? 'active' : ''}}" data-key="{{item.key}}" bindtap="onTabTap">
+      <image class="tab-icon" src="{{item.iconUrl}}" mode="aspectFit" />
+      <text>{{item.label}}</text>
+    </button>
+  </view>
+</view>

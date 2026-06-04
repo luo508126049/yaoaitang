@@ -1,0 +1,147 @@
+.page {
+  min-height: 100vh;
+  padding: 52rpx 28rpx 176rpx;
+  background: #f8f5e9;
+  color: #20170f;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  margin-bottom: 28rpx;
+}
+
+.back {
+  width: 64rpx;
+  height: 64rpx;
+  border: 2rpx solid #eae3d0;
+  border-radius: 50%;
+  color: #a67c3e;
+  background: #fffdf6;
+  font-size: 52rpx;
+  line-height: 56rpx;
+}
+
+.title {
+  color: #111;
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.state-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300rpx;
+  border: 2rpx solid #eae3d0;
+  border-radius: 22rpx;
+  background: #fffdf6;
+  color: #1f5446;
+  font-size: 30rpx;
+}
+
+.state-card.error {
+  color: #9b650e;
+}
+
+.hero {
+  display: block;
+  width: 100%;
+  height: 420rpx;
+  border: 2rpx solid #eadfc5;
+  border-radius: 26rpx;
+  background: #fffdf6;
+}
+
+.info,
+.panel {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  border: 2rpx solid #eadfc5;
+  border-radius: 22rpx;
+  background: #fffdf8;
+}
+
+.name,
+.subtitle {
+  display: block;
+}
+
+.name {
+  color: #111;
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin-top: 12rpx;
+  color: #776d61;
+  font-size: 27rpx;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 18rpx;
+  margin-top: 24rpx;
+}
+
+.price {
+  color: #9b650e;
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.market {
+  color: #999;
+  font-size: 26rpx;
+  text-decoration: line-through;
+}
+
+.panel-title {
+  display: block;
+  color: #1f5446;
+  font-size: 31rpx;
+  font-weight: 800;
+}
+
+.panel-text {
+  display: block;
+  margin-top: 18rpx;
+  color: #5c5148;
+  font-size: 27rpx;
+  line-height: 1.7;
+}
+
+.action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  padding: 18rpx 28rpx calc(18rpx + env(safe-area-inset-bottom));
+  border-top: 1rpx solid #e1d7c5;
+  background: rgba(255, 253, 248, .98);
+}
+
+.ghost,
+.primary {
+  flex: 1;
+  height: 84rpx;
+  border-radius: 999rpx;
+  font-size: 29rpx;
+  font-weight: 800;
+}
+
+.ghost {
+  margin-right: 18rpx;
+  border: 2rpx solid #1f5446;
+  color: #1f5446;
+  background: #fffdf6;
+}
+
+.primary {
+  color: #fffdf6;
+  background: #1f5446;
+}

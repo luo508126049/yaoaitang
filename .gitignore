@@ -1,0 +1,8 @@
+node_modules/
+dist/
+target/
+.idea/
+.vscode/
+*.log
+server/uploads/
+server/src/main/resources/application-local.yml
