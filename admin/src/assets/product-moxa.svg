@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="360" viewBox="0 0 420 360">
+  <rect width="420" height="360" rx="28" fill="#fbf8ee"/>
+  <path d="M120 105h66v164h-66zM206 82h66v187h-66z" fill="#f3dfb8" stroke="#a67c3e" stroke-width="7"/>
+  <path d="M124 136h58M210 120h58M124 176h58M210 160h58" stroke="#1f5446" stroke-width="6" stroke-linecap="round"/>
+  <text x="104" y="328" fill="#1f5446" font-size="28" font-weight="700" font-family="sans-serif">古法艾条单品</text>
+</svg>

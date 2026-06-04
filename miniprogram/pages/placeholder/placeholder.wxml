@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="topbar">
+    <button class="back" bindtap="onBack">‹</button>
+    <text class="top-title">{{title}}</text>
+  </view>
+  <view class="empty-card">
+    <view class="mark">
+      <image src="/images/yaoaitang-mark.png" mode="aspectFill" />
+    </view>
+    <text class="title">{{title}}</text>
+    <text class="subtitle">{{subtitle}}</text>
+    <button class="primary" bindtap="onHome">返回首页</button>
+  </view>
+</view>

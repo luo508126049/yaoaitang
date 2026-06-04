@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/mine/mine",
+    "pages/distribution/distribution",
+    "pages/cases/cases",
+    "pages/videos/videos",
+    "pages/experience/experience",
+    "pages/group/group",
+    "pages/market/market",
+    "pages/products/list",
+    "pages/products/detail",
+    "pages/login/login",
+    "pages/placeholder/placeholder"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#F8F5E9",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8F5E9"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

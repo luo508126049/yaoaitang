@@ -1,0 +1,10 @@
+<view class="page">
+  <button class="back" bindtap="onBack">‹</button>
+  <view class="login-card">
+    <image class="brand-mark" src="/images/yaoaitang-mark.png" mode="aspectFill" />
+    <text class="title">微信快捷登录</text>
+    <text class="subtitle">登录后可进入分销、购物车、个人中心和下单流程</text>
+    <button class="primary" bindtap="onLogin">一键授权登录</button>
+    <button class="ghost" bindtap="onBack">暂不登录</button>
+  </view>
+</view>

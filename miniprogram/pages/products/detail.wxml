@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="topbar">
+    <button class="back" bindtap="onBack">‹</button>
+    <text class="title">商品详情</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="state-card">加载中...</view>
+  <view wx:elif="{{error}}" class="state-card error">{{error}}</view>
+
+  <view wx:else class="detail">
+    <image class="hero" src="{{product.imageUrl}}" mode="aspectFill" />
+    <view class="info">
+      <text class="name">{{product.name}}</text>
+      <text class="subtitle">{{product.subtitle}}</text>
+      <view class="price-row">
+        <text class="price">¥{{product.displayPrice}}</text>
+        <text class="market">¥{{product.displayMarketPrice}}</text>
+      </view>
+    </view>
+    <view class="panel">
+      <text class="panel-title">非遗好物说明</text>
+      <text class="panel-text">{{product.description || '精选曜艾堂非遗艾制品，适合日常养生、门店体验和节礼赠送。'}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{product}}" class="action-bar">
+    <button class="ghost" bindtap="onCart">加入购物车</button>
+    <button class="primary" bindtap="onBuy">立即购买</button>
+  </view>
+</view>

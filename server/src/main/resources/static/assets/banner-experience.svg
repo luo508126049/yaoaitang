@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300">
+  <rect width="720" height="300" rx="28" fill="#1f5446"/>
+  <path d="M0 220c86-40 160-47 247-23 86 24 170 35 263 3 75-26 140-17 210 23v77H0z" fill="#2d6a59"/>
+  <path d="M85 72h246v156H85z" fill="#f8f5e9" rx="22"/>
+  <path d="M125 104h166M125 137h122M125 170h145" stroke="#a67c3e" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="530" cy="150" r="72" fill="#f8f5e9" opacity=".96"/>
+  <path d="M502 150c28-58 75-58 56 0 38 4 29 43-13 43h-53c-42 0-48-36 10-43z" fill="#a67c3e"/>
+  <text x="70" y="52" fill="#f8f5e9" font-size="32" font-weight="700" font-family="sans-serif">先灸后玉 · 到店体验</text>
+  <text x="70" y="260" fill="#f8f5e9" font-size="22" font-family="sans-serif">体验古法艾灸后再选购产品</text>
+</svg>

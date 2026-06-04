@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="topbar">
+    <button class="back" bindtap="onBack">‹</button>
+    <view>
+      <text class="title">分销中心</text>
+      <text class="subtitle">佣金、推广码和下线管理</text>
+    </view>
+  </view>
+
+  <view class="hero">
+    <text class="hero-title">曜艾堂推广员</text>
+    <text class="hero-sub">分享非遗艾灸好物，获得订单佣金</text>
+    <button bindtap="onOpen">一键成为分销员</button>
+  </view>
+
+  <view class="metrics">
+    <view wx:for="{{metrics}}" wx:key="label" class="metric">
+      <text class="metric-value">{{item.value}}</text>
+      <text class="metric-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <view class="panel">
+    <view class="panel-head">
+      <text>推广码</text>
+      <button bindtap="onShareTap">分享</button>
+    </view>
+    <view class="qr">YAT-2026</view>
+    <text class="hint">正式版将生成个人专属小程序码。</text>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title">今日推广任务</text>
+    <view wx:for="{{tasks}}" wx:key="*this" class="task">{{index + 1}}. {{item}}</view>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title">下线线索</text>
+    <view wx:for="{{partners}}" wx:key="name" class="partner">
+      <view>
+        <text class="partner-name">{{item.name}}</text>
+        <text class="partner-amount">{{item.amount}}</text>
+      </view>
+      <text class="tag">{{item.tag}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,142 @@
+.page {
+  min-height: 100vh;
+  padding: 52rpx 28rpx 160rpx;
+  background: #f8f5e9;
+  color: #20170f;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  margin-bottom: 34rpx;
+}
+
+.back {
+  width: 64rpx;
+  height: 64rpx;
+  border: 2rpx solid #eae3d0;
+  border-radius: 50%;
+  color: #a67c3e;
+  background: #fffdf6;
+  font-size: 52rpx;
+  line-height: 56rpx;
+}
+
+.title,
+.subtitle {
+  display: block;
+}
+
+.title {
+  color: #111;
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin-top: 8rpx;
+  color: #776d61;
+  font-size: 25rpx;
+}
+
+.state-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260rpx;
+  border: 2rpx solid #eae3d0;
+  border-radius: 22rpx;
+  background: #fffdf6;
+  color: #1f5446;
+  font-size: 30rpx;
+}
+
+.state-card.error {
+  color: #9b650e;
+}
+
+.state-sub {
+  margin-top: 12rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.product-list {
+  display: block;
+}
+
+.product-row {
+  display: flex;
+  width: 100%;
+  min-height: 190rpx;
+  padding: 18rpx;
+  border: 2rpx solid #eadfc5;
+  border-radius: 22rpx;
+  background: #fffdf8;
+  box-shadow: 0 8rpx 20rpx rgba(31, 84, 70, .08);
+  text-align: left;
+}
+
+.product-row + .product-row {
+  margin-top: 22rpx;
+}
+
+.pressable:active {
+  transform: scale(.98);
+}
+
+.product-row image {
+  width: 190rpx;
+  height: 154rpx;
+  border-radius: 16rpx;
+  background: #fbf8ee;
+}
+
+.product-main {
+  flex: 1;
+  min-width: 0;
+  padding: 8rpx 0 0 22rpx;
+}
+
+.name,
+.desc {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.name {
+  color: #111;
+  font-size: 31rpx;
+  font-weight: 800;
+}
+
+.desc {
+  margin-top: 12rpx;
+  color: #7d756d;
+  font-size: 25rpx;
+}
+
+.price-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24rpx;
+}
+
+.price {
+  color: #9b650e;
+  font-size: 34rpx;
+  font-weight: 800;
+}
+
+.tag {
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  color: #1f5446;
+  background: #edf5ef;
+  font-size: 22rpx;
+}

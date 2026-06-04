@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="330" height="250" viewBox="0 0 330 250">
+  <rect x="2" y="2" width="326" height="246" rx="24" fill="#eef5ed" stroke="#e1d7c5" stroke-width="3"/>
+  <path d="M0 190c45-38 91-47 136-27 54 25 105 26 177-8v95H0z" fill="#d7e5d7"/>
+  <text x="34" y="72" fill="#1f5446" font-size="48" font-weight="800" font-family="serif">拼团</text>
+  <path d="M132 97c20-30 63-26 78 6 30-19 74 2 75 40 1 35-36 53-71 39-18 27-70 31-91 0-33 11-65-11-54-43 8-25 37-45 63-42z" fill="#1f5446" opacity=".08"/>
+  <path d="M176 108h88v88h-88z" fill="#1f5446"/>
+  <path d="M168 101h104v22H168z" fill="#a67c3e"/>
+  <path d="M197 95c6-30 42-30 47 0" fill="none" stroke="#a67c3e" stroke-width="5"/>
+  <circle cx="220" cy="153" r="17" fill="#d8c794"/>
+  <circle cx="197" cy="157" r="13" fill="#d8c794"/>
+  <circle cx="243" cy="157" r="13" fill="#d8c794"/>
+  <path d="M58 133c37-50 67-52 52 7 35 12 23 58-22 52-29 35-78 2-54-41-27-13-10-46 24-18z" fill="#2e6a56"/>
+  <circle cx="58" cy="204" r="28" fill="#fbf8ee" stroke="#a67c3e" stroke-width="2"/>
+  <path d="M46 204h24M61 193l12 11-12 11" fill="none" stroke="#1f5446" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
